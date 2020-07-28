@@ -11,7 +11,7 @@ public class Processor implements ItemProcessor<Sales,Sales> {
 
 	public Sales process(Sales sales) throws Exception {
 		// TODO Auto-generated method stub
-		//System.err.println("Process");
+		System.err.println(sales.getShipDate());
 		return sales;
 	}
 

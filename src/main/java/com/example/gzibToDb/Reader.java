@@ -2,6 +2,7 @@ package com.example.gzibToDb;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import org.springframework.batch.item.UnexpectedInputException;
 
 public class Reader implements ItemReader<Sales> {
 	
-	public Reader() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException{
+	public Reader() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException,FileNotFoundException{
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -23,7 +24,7 @@ public class Reader implements ItemReader<Sales> {
 
 	private boolean batchJobState = false;
 	int bufferSize = 8 * 1024;
-	String inputFile = "C:/Users/ELCOT/Desktop/gzibToDb/src/main/resources/read/sales5lakhs.gz";
+	String inputFile = "C:/Users/ELCOT/Desktop/gzibToDb/src/main/resources/read/sales.gz";
 	GZIPInputStream input = new GZIPInputStream(new FileInputStream(inputFile));
 	InputStreamReader decoder = new InputStreamReader(input);
 	BufferedReader br = new BufferedReader(decoder, bufferSize);
@@ -55,8 +56,8 @@ public class Reader implements ItemReader<Sales> {
 
 				Date shipDate = new SimpleDateFormat("MM/dd/yyyy").parse(item[7]);
 				java.sql.Date sDate1 = new java.sql.Date(shipDate.getTime());
-				sales.setOrderDate(sDate1);
-
+				
+				System.out.println(sales.getShipDate());
 				sales.setUnitsSold(Integer.parseInt(item[8]));
 				sales.setUnitPrice(Float.parseFloat(item[9]));
 				sales.setUnitCost(Float.parseFloat(item[10]));
@@ -64,7 +65,7 @@ public class Reader implements ItemReader<Sales> {
 				sales.setTotalCost(Float.parseFloat(item[12]));
 				sales.setTotalProfit(Float.parseFloat(item[13]));
 	//			salesList.add(sales);
-    
+				sales.setShipDate(sDate1);
                   return sales;
 			}
   if(br.readLine()==null) {
