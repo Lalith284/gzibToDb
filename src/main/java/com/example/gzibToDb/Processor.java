@@ -7,15 +7,16 @@ import org.springframework.batch.item.ItemProcessor;
 
 
 
-public class Processor implements ItemProcessor<ArrayList<Sales>,ArrayList<Sales>> {
+public class Processor implements ItemProcessor<Sales,Sales> {
 
-	public ArrayList<Sales> process(ArrayList<Sales> sales) throws Exception {
+	public Sales process(Sales sales) throws Exception {
 		// TODO Auto-generated method stub
-		System.err.println("Process");
+		//System.err.println("Process");
 		return sales;
+	}
+
+	
 	}
 
 
 
-
-}

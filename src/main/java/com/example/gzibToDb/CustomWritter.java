@@ -8,6 +8,7 @@ import org.springframework.batch.item.ItemStream;
 import org.springframework.batch.item.ItemStreamException;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 public class CustomWritter <Sales> implements ItemWriter<List<Sales>> , ItemStream , InitializingBean{

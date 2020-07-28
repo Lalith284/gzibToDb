@@ -32,7 +32,7 @@ Job job;
 
 @Scheduled(cron="*/10 * * * * *")
 public void jobScheduled() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, IOException, InterruptedException{
-	File file = new File("C:/Users/ELCOT/Desktop/gzibToDb/src/main/resources/read/sales.gz");
+	File file = new File("C:/Users/ELCOT/Desktop/gzibToDb/src/main/resources/read/sales5lakhs.gz");
 	
 	System.err.println(file.exists());
 	if(file.exists()) {
@@ -44,7 +44,7 @@ public void jobScheduled() throws JobExecutionAlreadyRunningException, JobRestar
 	System.out.println("JOB EXECUTION :" + jobExecution.getStatus());
 	if(!jobExecution.getStatus().isUnsuccessful()) {
 		
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
 		//FileDeleteStrategy.FORCE.delete(file);
 		
 		file.delete();
